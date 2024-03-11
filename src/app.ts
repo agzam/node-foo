@@ -2,7 +2,6 @@ import express, { Request, Response } from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
-import * as middlewares from "./middlewares";
 import { handler } from "./filteredResponseHandler"
 require("dotenv").config();
 
@@ -19,8 +18,5 @@ app.get("/", (_, res)=> {
     message: '/formId is missing',
   });
 })
-
-app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
 
 export default app;

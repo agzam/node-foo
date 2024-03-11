@@ -12,7 +12,7 @@ export interface Question {
   name: string;
   type: "LongAnswer"|"ShortAnswer"|"DatePicker"|"NumberInput"|"MultipleChoice"|"EmailInput";
   options?: Option[];
-  value?: string;
+  value: string;
 }
 
 export interface FilteredResponseData {
