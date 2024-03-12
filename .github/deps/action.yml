@@ -1,0 +1,17 @@
+name: 'Tools & deps'
+description: 'install essential tools and fetch dependencies'
+runs:
+  using: 'composite'
+  steps:
+    - name: 'checkout'
+      uses: actions/checkout@v3
+
+    - name: 'install NodeJS'
+      id: setup-node
+      uses: actions/setup-node@v3
+      with:
+        node-version: current
+        cache: 'npm'
+        cache-dependency-path: package-lock.json
+    - run: npm clean-install
+      shell: bash

@@ -1,0 +1,17 @@
+name: 'build & test'
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  jest-tests:
+    name: 'Run backend tests'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/deps
+      - name: 'Running jest tests'
+        run: npm run test
