@@ -54,7 +54,7 @@ export function filterQuestions(
             break;
           }
           default:
-            filterFn(questionVal, flt.value);
+            shouldInclude = filterFn(questionVal, flt.value);
         }
         if (shouldInclude) {
           acc.push(nxt);

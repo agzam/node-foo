@@ -148,4 +148,26 @@ describe("filter questions", () => {
       originalAPIResponseData.questions[3],
     ]);
   });
+
+  it("filters strings using equals", async () => {
+    const mockedData = { data: { ...originalAPIResponseData } };
+    mockedAxios.get.mockResolvedValue(mockedData);
+    const filters = [
+      {
+        id: "4KC356y4M6W8jHPKx9QfEy",
+        condition: "equals",
+        value: "No thank you!",
+      },
+    ];
+    const filtersAsQueryParams = encodeURIComponent(JSON.stringify(filters));
+
+    const response = await request(app)
+      .get(`/testFormId?filters=${filtersAsQueryParams}`)
+      .expect("Content-Type", /json/);
+
+    // should match only Fourth
+    expect(response.body.data.questions).toStrictEqual([
+      originalAPIResponseData.questions[4],
+    ]);
+  });
 });
